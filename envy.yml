@@ -1,0 +1,6 @@
+servers:
+  web:
+    - forge@18.142.46.184
+    - forge@18.142.46.184
+  workers:
+    - forge@18.142.46.184
