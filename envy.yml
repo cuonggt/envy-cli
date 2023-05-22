@@ -5,5 +5,10 @@ servers:
 tasks:
   deploy:
     name: Deploy
-    steps:
-      - ls -la
+    script: |
+      cd /home/forge/tlh-reapit-demo.twenty-tech.com
+      git fetch origin --prune --prune-tags
+      git checkout master
+      git reset --hard origin/master
+      yarn
+      yarn build

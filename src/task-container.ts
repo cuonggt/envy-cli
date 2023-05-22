@@ -5,9 +5,19 @@ type Servers = {
   [name: string]: string[]
 }
 
+type EnvyTask = {
+  name?: string
+  script: string
+}
+
+type EnvyTasks = {
+  [name: string]: EnvyTask
+}
+
 export default class TaskContainer {
   config: { [key: string]: any} = {}
   servers: Servers = {}
+  tasks: EnvyTasks = {}
 
   constructor() {
     this.config = {}
@@ -17,6 +27,7 @@ export default class TaskContainer {
   load() {
     this.config = parse(readFileSync('envy.yml', 'utf8'))
     this.servers = this.config.servers || {}
+    this.tasks = this.config.tasks || {}
   }
 
   getServer(name: string) {
