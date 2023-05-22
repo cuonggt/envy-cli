@@ -1,6 +1,6 @@
 {
   "name": "envy-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Elegant SSH tasks.",
   "author": "Cuong Giang @cuonggt",
   "bin": {
