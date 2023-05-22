@@ -1,14 +1,10 @@
 servers:
   web:
-    - forge@18.142.46.184
+    - forge@1.1.1.1
 
-tasks:
-  deploy:
-    name: Deploy
-    script: |
-      cd /home/forge/tlh-reapit-demo.twenty-tech.com
-      git fetch origin --prune --prune-tags
-      git checkout master
-      git reset --hard origin/master
-      yarn
-      yarn build
+  tasks:
+    deploy:
+      name: Deploy
+      script: |
+        cd /path/to/site
+        git pull origin master
