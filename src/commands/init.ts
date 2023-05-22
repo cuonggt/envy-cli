@@ -30,7 +30,7 @@ export default class Init extends Command {
       script: |
         cd /path/to/site
         git pull origin master
-`, error => {
+`, function (error) {
       if (error) {
         throw error
       }
