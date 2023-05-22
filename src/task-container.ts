@@ -15,7 +15,7 @@ type EnvyTasks = {
 }
 
 export default class TaskContainer {
-  config: { [key: string]: any} = {}
+  config: Record<string, any> = {}
   servers: Servers = {}
   tasks: EnvyTasks = {}
 

@@ -24,12 +24,12 @@ export default class Init extends Command {
   web:
     - ${args.host}
 
-  tasks:
-    deploy:
-      name: Deploy
-      script: |
-        cd /path/to/site
-        git pull origin master
+tasks:
+  deploy:
+    name: Deploy
+    script: |
+      cd /path/to/site
+      git pull origin master
 `
 
     writeFile(path, data, function (error) {
