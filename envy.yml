@@ -1,6 +1,6 @@
 servers:
   web:
-    - forge@1.1.1.1
+    - forge@18.142.46.184
 
   tasks:
     deploy:

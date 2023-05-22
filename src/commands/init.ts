@@ -20,7 +20,7 @@ export default class Init extends Command {
       throw new Error('Envy file already exists!')
     }
 
-    writeFile(path, `servers:
+    const data = `servers:
   web:
     - ${args.host}
 
@@ -30,7 +30,9 @@ export default class Init extends Command {
       script: |
         cd /path/to/site
         git pull origin master
-`, function (error) {
+`
+
+    writeFile(path, data, function (error) {
       if (error) {
         throw error
       }
