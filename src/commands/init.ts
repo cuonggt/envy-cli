@@ -35,7 +35,7 @@ export default class Init extends Command {
         throw error
       }
 
-      console.log('Envoy file created!')
+      console.log('Envy file created!')
     })
   }
 }
