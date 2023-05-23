@@ -2,6 +2,8 @@ import {Args} from '@oclif/core'
 import BaseCommand from '../base-command'
 import Envy from '../envy'
 import {spawn} from 'node:child_process'
+import {consola} from 'consola'
+import {CommandError} from '@oclif/core/lib/interfaces'
 
 export default class Ssh extends BaseCommand<typeof BaseCommand> {
   static description = 'Connect to an Envy server.'

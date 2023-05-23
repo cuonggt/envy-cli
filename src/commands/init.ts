@@ -1,8 +1,10 @@
-import {Args, Command} from '@oclif/core'
+import {Args} from '@oclif/core'
 import {existsSync, writeFile} from 'node:fs'
 import {cwd} from 'node:process'
+import {consola} from 'consola'
+import BaseCommand from '../base-command'
 
-export default class Init extends Command {
+export default class Init extends BaseCommand<typeof BaseCommand> {
   static description = 'Create a new Envy file in the current directory.'
 
   static examples = [
@@ -37,7 +39,7 @@ tasks:
         throw error
       }
 
-      this.log('Envy file created!')
+      consola.log('Envy file created!')
     })
   }
 }

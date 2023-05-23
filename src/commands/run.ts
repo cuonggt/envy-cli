@@ -2,6 +2,7 @@ import {Args} from '@oclif/core'
 import BaseCommand from '../base-command'
 import Envy from '../envy'
 import {spawn} from 'node:child_process'
+import {consola} from 'consola'
 
 export default class Run extends BaseCommand<typeof BaseCommand> {
   static description = 'Run an Envy task.'
@@ -16,7 +17,7 @@ export default class Run extends BaseCommand<typeof BaseCommand> {
 
   public async run(): Promise<void> {
     const envy = Envy.load()
-    const script = envy.tasks[this.args.task].script || ''
+    const script = envy.tasks[this.args.task]?.script || ''
 
     if (script === '') {
       throw new Error(`Task ${this.args.task} is not defined.`)
@@ -38,7 +39,7 @@ EOF`
     process.stdout.on('data', (data: Buffer) => {
       const output = data.toString().trim().split(/\r?\n/)
       for (const line of output) {
-        this.log(`[${server[0]}]: ${line}`)
+        consola.log(`[${server[0]}]: ${line}`)
       }
     })
   }
