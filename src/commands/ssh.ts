@@ -19,7 +19,16 @@ export default class Ssh extends BaseCommand<typeof BaseCommand> {
 
   public async run(): Promise<void> {
     const server = this.getServer()
-    spawn('ssh', [server[0]], {stdio: 'inherit'})
+    const args = [
+      '-o ConnectTimeout=5',
+      '-o ControlMaster=auto',
+      '-o ControlPersist=100',
+      '-o LogLevel=QUIET',
+      '-o StrictHostKeyChecking=no',
+      '-t',
+      server[0],
+    ]
+    spawn('ssh', args, {stdio: 'inherit'})
   }
 
   getServer() {
