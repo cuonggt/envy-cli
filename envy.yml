@@ -3,8 +3,6 @@ servers:
     - forge@18.142.46.184
 
 tasks:
-  deploy:
-    name: Deploy
+  foo:
     script: |
-      cd /path/to/site
-      git pull origin master
+      ls -la

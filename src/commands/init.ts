@@ -15,7 +15,7 @@ export default class Init extends Command {
 
   public async run(): Promise<void> {
     const {args} = await this.parse(Init)
-    const path = cwd() + '/envy.yml'
+    const path = `${cwd()}/envy.yml`
     if (existsSync(path)) {
       throw new Error('Envy file already exists!')
     }
@@ -32,12 +32,12 @@ tasks:
       git pull origin master
 `
 
-    writeFile(path, data, function (error) {
+    writeFile(path, data, error => {
       if (error) {
         throw error
       }
 
-      console.log('Envy file created!')
+      this.log('Envy file created!')
     })
   }
 }
