@@ -1,4 +1,4 @@
-import {Args} from '@oclif/core'
+import {Args, Flags} from '@oclif/core'
 import BaseCommand from '../base-command'
 import Envy from '../envy'
 import {spawn} from 'node:child_process'
@@ -15,12 +15,21 @@ export default class Run extends BaseCommand<typeof BaseCommand> {
     task: Args.string({description: 'The name of the task.', required: true}),
   }
 
+  static flags = {
+    pretend: Flags.boolean({char: 'p', description: 'Dump Bash script for inspection.'}),
+  }
+
   public async run(): Promise<void> {
     const envy = Envy.load()
     const script = envy.tasks[this.args.task]?.script || ''
 
     if (script === '') {
       throw new Error(`Task ${this.args.task} is not defined.`)
+    }
+
+    if (this.pretending()) {
+      this.log(script)
+      return
     }
 
     const server = envy.getFirstServer()
@@ -42,5 +51,9 @@ EOF`
         consola.log(`[${server[0]}]: ${line}`)
       }
     })
+  }
+
+  pretending() {
+    return Boolean(this.flags.pretend)
   }
 }
