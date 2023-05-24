@@ -16,7 +16,6 @@ export default class Init extends BaseCommand<typeof BaseCommand> {
   }
 
   public async run(): Promise<void> {
-    const {args} = await this.parse(Init)
     const path = `${cwd()}/envy.yml`
     if (existsSync(path)) {
       throw new Error('Envy file already exists!')
@@ -24,7 +23,7 @@ export default class Init extends BaseCommand<typeof BaseCommand> {
 
     const data = `servers:
   web:
-    - ${args.host}
+    - ${this.args.host}
 
 tasks:
   deploy:
